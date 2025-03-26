@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.crypto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid black;
+    width: 50%;
+}
+
+.crypto img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin: 0 10px;
+}
+
+.favorite {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.name {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.percentage {
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 30%;
+    margin: 10px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criptomonedas</title>
+    <!-- Vincula el archivo CSS aquí -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        function filtrarCriptos() {
+            let filtro = document.getElementById("search").value.toLowerCase();
+            let items = document.getElementsByClassName("crypto");
+
+            for (let i = 0; i < items.length; i++) {
+                let nombre = items[i].getElementsByClassName("name")[0].innerText.toLowerCase();
+                if (nombre.includes(filtro)) {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>CoinBase</h1>
+
+    <!-- Barra de búsqueda -->
+    <div class="navbar">
+        <input type="text" id="search" onkeyup="filtrarCriptos()" placeholder="Buscar criptomoneda...">
+    </div>
+
+    <ol id="crypto-list">
+        {% for cripto in criptomonedas %}
+            <li class="crypto">
+                <span class="name">
+                    <a href="{{ url_for('imagen', id=cripto.id) }}" target="_blank">
+                        {{ loop.index }}. {{ cripto.name }}
+                    </a>
+                </span>
+                <span class="percentage {% if cripto.change_percentage >= 0 %}positive{% else %}negative{% endif %}">
+                    {{ "%+.2f" | format(cripto.change_percentage) }}%
+                </span>
+                <img src="{{ url_for('static', filename='img/' + cripto.name.lower() + '.png') }}" alt="{{ cripto.name }}">
+                <a href="{{ url_for('favorito', id=cripto.id) }}" class="favorite">
+                    {% if cripto.favorite %}⭐{% else %}☆{% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
+
+
