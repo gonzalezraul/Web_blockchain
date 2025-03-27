@@ -27,12 +27,12 @@ with app.app_context():
             db.session.add(Criptomoneda(name=nombre, change_percentage=porcentaje))
         db.session.commit()
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     criptomonedas = Criptomoneda.query.all()
     return render_template('index.html', criptomonedas=criptomonedas)
 
-@app.route('/favorito/<int:id>')
+@app.route('/favorito/<int:id>', methods=['GET','POST'])
 def favorito(id):
     criptomoneda = Criptomoneda.query.get(id)
     if criptomoneda:
