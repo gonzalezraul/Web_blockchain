@@ -50,7 +50,8 @@
                 </span>
                 <img src="{{ url_for('static', filename='img/' + cripto.name.lower() + '.png') }}" alt="{{ cripto.name }}">
                 <a href="{{ url_for('favorito', id=cripto.id) }}" class="favorite">
-                    {% if cripto.favorite %}⭐{% else %}☆{% endif %}
+                    
+                    {% if cripto.favorite %}<div class="yellow">★</div>{% else %}☆{% endif %}
                 </a>
             </li>
         {% endfor %}

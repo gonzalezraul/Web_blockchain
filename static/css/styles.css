@@ -24,6 +24,21 @@ body {
     margin: 0 10px;
 }
 
+a.favorite{
+    text-decoration: none;
+    color: gray;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+a.favorite:hover{
+    transform: scale(1.15)
+}
+
+.yellow{
+    color: rgb(237, 237, 0);
+}
+
 .favorite {
     cursor: pointer;
     font-size: 20px;
