@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for
+from flask import Flask, request, jsonify, render_template, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 import random
 
@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'mysecretkey'  # Necesario para manejar sesiones
 
 db = SQLAlchemy(app)
 
@@ -14,6 +15,12 @@ class Criptomoneda(db.Model):
     name = db.Column(db.String(80), nullable=False)
     favorite = db.Column(db.Boolean, default=False)
     change_percentage = db.Column(db.Float, default=0.0)  # Nuevo campo para % de cambio
+
+# Clase de usuario para login/registro
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(80), nullable=False)  # Nota: para producción, utiliza hashing
 
 with app.app_context():
     db.create_all()
@@ -56,6 +63,42 @@ def imagen(id):
     }
     return redirect(imagenes.get(id, "https://via.placeholder.com/150"))
 
+# Rutas para registro, login y logout
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+         username = request.form['username']
+         password = request.form['password']
+         # Verifica si el usuario ya existe
+         if User.query.filter_by(username=username).first():
+              flash('El usuario ya existe, elige otro.')
+              return redirect(url_for('register'))
+         new_user = User(username=username, password=password)
+         db.session.add(new_user)
+         db.session.commit()
+         session['username'] = username  # Guarda el nombre en la sesión
+         return redirect(url_for('index'))
+    return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+         username = request.form['username']
+         password = request.form['password']
+         user = User.query.filter_by(username=username, password=password).first()
+         if user:
+              session['username'] = username
+              return redirect(url_for('index'))
+         else:
+              flash('Credenciales incorrectas')
+              return redirect(url_for('login'))
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)

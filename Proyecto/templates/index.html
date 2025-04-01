@@ -24,6 +24,13 @@
 </head>
 <body>
     <h1>CoinBase</h1>
+    
+    <!-- Agregado: Mostrar usuario logueado o enlaces para login/registro -->
+    {% if session.username %}
+        <p>Bienvenido, {{ session.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Registro</a></p>
+    {% endif %}
 
     <!-- Barra de búsqueda -->
     <div class="navbar">
@@ -50,5 +57,3 @@
     </ol>
 </body>
 </html>
-
-
