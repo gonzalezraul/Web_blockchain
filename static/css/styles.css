@@ -1,9 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
 body {
-    font-family: Arial, sans-serif;
+    font-family: Poppins;
     text-align: center;
 }
 
 .navbar {
+    
+    margin: 20px;
+    margin-top: 10px;
+
+    display: flex;
+
+}
+
+div.nav-right{
+    display: flex;
+    margin-left: auto;
+}
+
+h1{
+    margin: 0px;
+    
+}
+
+.search{
     margin-bottom: 20px;
 }
 
@@ -28,11 +69,12 @@ a.favorite{
     text-decoration: none;
     color: gray;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 a.favorite:hover{
-    transform: scale(1.15)
+    transform: scale(1.25);
+
 }
 
 .yellow{
@@ -50,8 +92,14 @@ a.favorite:hover{
     text-align: left;
 }
 
+.name>a{
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+}
+
 .percentage {
-    font-weight: bold;
+    font-weight: 500;
     margin: 0 10px;
 }
 
@@ -67,4 +115,36 @@ input[type="text"] {
     padding: 8px;
     width: 30%;
     margin: 10px;
+}
+
+.login-button{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    padding: 10px;
+    padding-inline: 15px;
+    border-radius: 25px;
+    background-color: rgb(225, 225, 225);
+    transition: 0.15s;
+}
+
+.login-button:hover{
+    background-color: rgb(211, 211, 211);
+}
+
+.register-button{
+    margin-left: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: blue;
+    font-weight: 500;
+    padding: 10px;
+    padding-inline: 15px;
+    border-radius: 25px;
+    transition: 0.15s;
+}
+
+.register-button:hover{
+    background-color: rgb(0, 0, 201);
+
 }

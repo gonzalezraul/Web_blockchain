@@ -23,17 +23,25 @@
     </script>
 </head>
 <body>
-    <h1>CoinBase</h1>
+
+    <header class="navbar">
+        <h1>CoinBase</h1>
+        
+        <div class="nav-right">
+            {% if session.username %}
+            <p>Bienvenido, {{ session.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+            {% else %}
+                <p><a class="login-button" href="{{ url_for('login') }}">Iniciar Sesión</a> <a class="register-button" href="{{ url_for('register') }}">Registro</a></p>
+            {% endif %}
+
+        </div>
+        
+
+    </header>
     
-    <!-- Agregado: Mostrar usuario logueado o enlaces para login/registro -->
-    {% if session.username %}
-        <p>Bienvenido, {{ session.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
-    {% else %}
-        <p><a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Registro</a></p>
-    {% endif %}
 
     <!-- Barra de búsqueda -->
-    <div class="navbar">
+    <div class="search">
         <input type="text" id="search" onkeyup="filtrarCriptos()" placeholder="Buscar criptomoneda...">
     </div>
 
