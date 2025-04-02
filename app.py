@@ -112,5 +112,11 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
+@app.route('/cripto/<int:id>')
+def cripto(id):
+    cripto = Criptomoneda.query.get_or_404(id)
+    return render_template('cripto.html', cripto=cripto)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

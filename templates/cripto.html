@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cripto.name }}</title>
+</head>
+
+
+<body>
+    <h1>{{ cripto.name }}</h1>
+    <p>Precio: ${{ cripto.price }}</p>
+    <p>Cambio: {{ cripto.change_percentage }}%</p>
+    <a href="{{ url_for('index') }}">Volver</a>
+    {% if cripto.favorite %}<div class="yellow">★</div>{% else %}☆{% endif %}
+    
+</body>
+</html>

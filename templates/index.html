@@ -78,8 +78,9 @@
         <div id="sin-resultados">No hay resultados</div>
 
         {% for cripto in criptomonedas %}
-            <li class="crypto">
 
+            <li class="crypto">
+                
                 
 
                 <a href="{{ url_for('favorito', id=cripto.id) }}" class="favorite">
@@ -91,9 +92,10 @@
                 </div>
                 <img src="{{ url_for('imagen', id=cripto.id) }}" class="img-crypto">
                 <span class="name-crypto">
+                    <a href="{{ url_for('cripto', id=cripto.id) }}">{{ cripto.name }}</a>
                     
 
-                        {{ cripto.name }}
+
 
                 </span>
                 <span class="price">
@@ -104,7 +106,10 @@
                 </span>
                 <img class="grafico" src="{{ url_for('static', filename='img/' + cripto.name.lower() + '.png') }}" alt="{{ cripto.name }}">
                 
+
             </li>
+
+   
         {% endfor %}
     </ol>
 </body>
