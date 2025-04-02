@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criptomonedas</title>
-    <!-- Vincula el archivo CSS aquí -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script>
         function filtrarCriptos() {
             let filtro = document.getElementById("search").value.toLowerCase();
             let items = document.getElementsByClassName("crypto");
+            let noResultsMessage = document.getElementById("sin-resultados");
+            let found = false;  // Track if any crypto matches
 
             for (let i = 0; i < items.length; i++) {
-                let nombre = items[i].getElementsByClassName("name")[0].innerText.toLowerCase();
+                let nombre = items[i].getElementsByClassName("name-crypto")[0].innerText.toLowerCase();
                 if (nombre.includes(filtro)) {
                     items[i].style.display = "flex";
+                    found = true;  // At least one match found
                 } else {
                     items[i].style.display = "none";
+
                 }
+            }
+
+            // Show or hide the "No results" message
+            if (found) {
+                noResultsMessage.style.display = "none";
+            } else {
+                noResultsMessage.style.display = "flex";
             }
         }
     </script>
@@ -40,27 +50,60 @@
     </header>
     
 
-    <!-- Barra de búsqueda -->
     <div class="search">
         <input type="text" id="search" onkeyup="filtrarCriptos()" placeholder="Buscar criptomoneda...">
     </div>
 
     <ol id="crypto-list">
+        
+        <li class="crypto-info-list">
+            <span class="name">
+                Criptomoneda
+            </span>
+
+            <span class="info">
+                Precio
+            </span>
+
+            <span class="info">
+                Cambio
+            </span>
+            
+            <span class="info" style="margin-right: 10px;">
+                Gráfico
+            </span>
+            
+        </li>
+
+        <div id="sin-resultados">No hay resultados</div>
+
         {% for cripto in criptomonedas %}
             <li class="crypto">
-                <span class="name">
-                    <a href="{{ url_for('imagen', id=cripto.id) }}" target="_blank">
-                        {{ loop.index }}. {{ cripto.name }}
-                    </a>
-                </span>
-                <span class="percentage {% if cripto.change_percentage >= 0 %}positive{% else %}negative{% endif %}">
-                    {{ "%+.2f" | format(cripto.change_percentage) }}%
-                </span>
-                <img src="{{ url_for('static', filename='img/' + cripto.name.lower() + '.png') }}" alt="{{ cripto.name }}">
+
+                
+
                 <a href="{{ url_for('favorito', id=cripto.id) }}" class="favorite">
                     
                     {% if cripto.favorite %}<div class="yellow">★</div>{% else %}☆{% endif %}
                 </a>
+
+                    
+                </div>
+                <img src="{{ url_for('imagen', id=cripto.id) }}" class="img-crypto">
+                <span class="name-crypto">
+                    
+
+                        {{ cripto.name }}
+
+                </span>
+                <span class="price">
+                    {{ cripto.price }} €
+                </span>
+                <span class="percentage {% if cripto.change_percentage >= 0 %}positive{% else %}negative{% endif %}">
+                    {{ "%+.2f" | format(cripto.change_percentage) }}%
+                </span>
+                <img class="grafico" src="{{ url_for('static', filename='img/' + cripto.name.lower() + '.png') }}" alt="{{ cripto.name }}">
+                
             </li>
         {% endfor %}
     </ol>

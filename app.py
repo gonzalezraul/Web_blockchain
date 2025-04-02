@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for, s
 from flask_sqlalchemy import SQLAlchemy
 import random
 
+
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -15,6 +17,7 @@ class Criptomoneda(db.Model):
     name = db.Column(db.String(80), nullable=False)
     favorite = db.Column(db.Boolean, default=False)
     change_percentage = db.Column(db.Float, default=0.0)  # Nuevo campo para % de cambio
+    price = db.Column(db.Float, default=0.0)
 
 # Clase de usuario para login/registro
 class User(db.Model):
@@ -23,15 +26,24 @@ class User(db.Model):
     password = db.Column(db.String(80), nullable=False)  # Nota: para producción, utiliza hashing
 
 with app.app_context():
+    db.drop_all()
     db.create_all()
     if Criptomoneda.query.count() == 0:
         criptomonedas = [
-            "Bitcoin", "Ethereum", "Cardano", "Solana", "Dogecoin",
-            "Polkadot", "Litecoin", "Tether", "Xrp", "Bnb"
+            {"name": "Bitcoin", "price": 78057.97},
+            {"name": "Ethereum", "price": 3000.0},
+            {"name": "Cardano", "price": 1.2},
+            {"name": "Solana", "price": 150.0},
+            {"name": "Dogecoin", "price": 0.16},
+            {"name": "Polkadot", "price": 25.0},
+            {"name": "Litecoin", "price": 180.0},
+            {"name": "Tether", "price": 1.0},
+            {"name": "Xrp", "price": 0.6},
+            {"name": "Bnb", "price": 350.0}
         ]
-        for nombre in criptomonedas:
-            porcentaje = round(random.uniform(-10, 10), 2)  # Genera valores aleatorios entre -10% y 10%
-            db.session.add(Criptomoneda(name=nombre, change_percentage=porcentaje))
+        for moneda in criptomonedas:
+            porcentaje = round(random.uniform(-10, 10), 2)  # Generate random change percentage
+            db.session.add(Criptomoneda(name=moneda["name"], price=moneda["price"], change_percentage=porcentaje))
         db.session.commit()
 
 @app.route('/', methods=['GET'])
@@ -52,14 +64,14 @@ def imagen(id):
     imagenes = {
         1: "https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg",
         2: "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg",
-        3: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Cardano_Logo.svg",
+        3: "https://dynamic-assets.coinbase.com/da39dfe3632bf7a9c26b5aff94fe72bc1a70850bc488e0c4d68ab3cf87ddac277cd1561427b94acb4b3e37479a1f73f1c37ed311c11a742d6edf512672aea7bb/asset_icons/a55046bc53c5de686bf82a2d9d280b006bd8d2aa1f3bbb4eba28f0c69c7597da.png",
         4: "https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png",
         5: "https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png",
-        6: "https://upload.wikimedia.org/wikipedia/en/7/7d/Polkadot_cryptocurrency_logo.svg",
-        7: "https://upload.wikimedia.org/wikipedia/commons/4/42/Litecoin.svg",
-        8: "https://upload.wikimedia.org/wikipedia/en/8/88/Chainlink_Logo.png",
-        9: "https://upload.wikimedia.org/wikipedia/en/6/6f/Ripple_logo.png",
-        10: "https://upload.wikimedia.org/wikipedia/en/2/25/Stellar_logo.png"
+        6: "https://dynamic-assets.coinbase.com/9957ebecd9f4d6a2a4cf877577364e8c9bfb937c7f8385e153fc878e9ed3766a563cdd1a80903f465f50b4edfb5089251e045d362a8fbe5b888b9de18bfcc09a/asset_icons/f786d2f3573f77db841b406bf607ac7ddfe70d533acc6d05f2cb3cb3eab11925.png",
+        7: "https://dynamic-assets.coinbase.com/f018870b721574ef7f269b9fd91b36042dc05ebed4ae9dcdc340a1bae5b359e8760a8c224bc99466db704d10a3e23cf1f4cd1ff6f647340c4c9c899a9e6595cd/asset_icons/984a4fe2ba5b2c325c06e4c2f3ba3f1c1fef1f157edb3b8ebbfe234340a157a5.png",
+        8: "https://dynamic-assets.coinbase.com/41f6a93a3a222078c939115fc304a67c384886b7a9e6c15dcbfa6519dc45f6bb4a586e9c48535d099efa596dbf8a9dd72b05815bcd32ac650c50abb5391a5bd0/asset_icons/1f8489bb280fb0a0fd643c1161312ba49655040e9aaaced5f9ad3eeaf868eadc.png",
+        9: "https://dynamic-assets.coinbase.com/e81509d2307f706f3a6f8999968874b50b628634abf5154fc91a7e5f7685d496a33acb4cde02265ed6f54b0a08fa54912208516e956bc5f0ffd1c9c2634099ae/asset_icons/3af4b33bde3012fd29dd1366b0ad737660f24acc91750ee30a034a0679256d0b.png",
+        10: "https://dynamic-assets.coinbase.com/36f266bc4826775268588346777c84c1ae035e7de268a6e124bcc22659f0aa2bf4f66dcad89b2ac978cfdb4d51c2d9f63cf7157769efb500b20ca16a6d5719c7/asset_icons/7deb6ff58870072405c0418d85501c4521c3296e33ef58452be98e4ca592ed19.png"
     }
     return redirect(imagenes.get(id, "https://via.placeholder.com/150"))
 

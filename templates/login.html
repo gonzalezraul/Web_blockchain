@@ -2,17 +2,52 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 <body>
-    <h1>Login</h1>
+
+
+  <header class="navbar">
+    <h1>CoinBase</h1>
+    
+    <div class="nav-right">
+            <p><a class="register-button" href="{{ url_for('register') }}">Registro</a></p>
+
+
+    </div>
+    
+
+</header>
+
+  <div class="login-box">
+    <div class="login-title">
+      <h2>Iniciar Sesión</h2>
+
+    </div>
+    
     <form method="post">
-         <label>Usuario:</label>
-         <input type="text" name="username" required>
-         <br>
-         <label>Contraseña:</label>
-         <input type="password" name="password" required>
-         <br>
-         <input type="submit" value="Iniciar sesión">
+        <label>Usuario:</label>
+
+        <div class="input-box">
+          <input type="text" name="username" required>
+
+        </div>
+        
+
+        <label>Contraseña:</label>
+
+        <div class="input-box">
+          <input type="password" name="password" required>
+
+        </div>
+        
+        
+
+        <div class="submit">
+          <input type="submit" value="Iniciar sesión">
+        </div>
+        
     </form>
     <p>¿No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
     {% with messages = get_flashed_messages() %}
@@ -24,5 +59,7 @@
         </ul>
       {% endif %}
     {% endwith %}
+  </div>
+    
 </body>
 </html>
