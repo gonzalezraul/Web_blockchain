@@ -18,32 +18,90 @@ class Criptomoneda(db.Model):
     favorite = db.Column(db.Boolean, default=False)
     change_percentage = db.Column(db.Float, default=0.0)  # Nuevo campo para % de cambio
     price = db.Column(db.Float, default=0.0)
+    info = db.Column(db.Text, default="")     # Aquí se guarda la información adicional propia de cada criptomoneda.
+    acerca = db.Column(db.Text, default="")   # Aquí se guarda la sección 'Acerca de' propia de cada criptomoneda.
 
-# Clase de usuario para login/registro
+# Define el modelo de usuario para evitar errores al referenciar a "User"
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)  # Nota: para producción, utiliza hashing
+    password = db.Column(db.String(120), nullable=False)
 
 with app.app_context():
     db.drop_all()
     db.create_all()
     if Criptomoneda.query.count() == 0:
         criptomonedas = [
-            {"name": "Bitcoin", "price": 78057.97},
-            {"name": "Ethereum", "price": 3000.0},
-            {"name": "Cardano", "price": 1.2},
-            {"name": "Solana", "price": 150.0},
-            {"name": "Dogecoin", "price": 0.16},
-            {"name": "Polkadot", "price": 25.0},
-            {"name": "Litecoin", "price": 180.0},
-            {"name": "Tether", "price": 1.0},
-            {"name": "Xrp", "price": 0.6},
-            {"name": "Bnb", "price": 350.0}
+            {
+                "name": "Bitcoin", 
+                "price": 78057.97,
+                "info": "Información y análisis de Bitcoin.",
+                "acerca": "Bitcoin, la primera criptomoneda del mundo, se almacena e intercambia de forma segura en internet a través de un libro de contabilidad distribuido conocido como una cadena de bloques. Los bitcoins se pueden dividir en unidades más pequeñas llamadas satoshis, cada satoshi tiene el valor de 0,00000001 bitcoins."
+            },
+            {
+                "name": "Ethereum", 
+                "price": 3000.0,
+                "info": "Información, análisis y tendencias de Ethereum.",
+                "acerca": "Ethereum es una plataforma informática descentralizada que utiliza ETH (también denominado Ether) para pagar las comisiones de las transacciones (o «gas»). Los desarrolladores pueden usar Ethereum para ejecutar aplicaciones descentralizadas (dapps) y emitir nuevos criptoactivos, conocidos como tokens de Ethereum."
+            },
+            {
+                "name": "Cardano", 
+                "price": 1.2,
+                "info": "Análisis y datos sobre Cardano.",
+                "acerca": "Cardano (ADA) is a blockchain platform built on a proof-of-stake consensus protocol (called Ouroboros) that validates transactions without high energy costs. Development on Cardano uses the Haskell programming language, which is described as enabling Cardano “to pursue evidence-based development for unparalleled security and stability.” The blockchain’s native token, ADA, is named after the 19th century mathematician, Ada Lovelace."
+            },
+            {
+                "name": "Solana", 
+                "price": 150.0,
+                "info": "Información y análisis de Solana, la red de alto rendimiento.",
+                "acerca": "Solana is a decentralized computing platform that uses SOL to pay for transactions. Solana aims to improve blockchain scalability by using a combination of proof of stake consensus and so-called proof of history. As a result, Solana claims to be able to support 50,000 transactions per second without sacrificing decentralization."
+            },
+            {
+                "name": "Dogecoin", 
+                "price": 0.16,
+                "info": "Noticias y análisis sobre Dogecoin, la criptomoneda meme.",
+                "acerca": "Dogecoin (DOGE) se creó en 2013 para ofrecer una alternativa más desenfadada que las criptomonedas tradicionales, como Bitcoin. El nombre Dogecoin y el logotipo del perro de raza shiba inu están inspirados en un meme. A diferencia de Bitcoin, cuya escasez forma parte de su naturaleza, Dogecoin está pensado para ser un activo abundante. Tanto es así que, además de no disponer de un suministro máximo establecido, cada minuto se minan 10 000 monedas nuevas en todo el mundo."
+            },
+            {
+                "name": "Polkadot", 
+                "price": 25.0,
+                "info": "Análisis y tendencias de Polkadot en el mercado cripto.",
+                "acerca": "Polkadot es un protocolo que permite las transferencias de cualquier tipo de datos o activos entre cadenas de bloques. Al unir varias cadenas de bloques, Polkadot trata de ofrecer un mayor grado de seguridad y escalabilidad. DOT es el token de gobernanza del protocolo y se puede usar en procesos de staking para mejorar la seguridad de la red o para conectar o vincular nuevas cadenas."
+            },
+            {
+                "name": "Litecoin", 
+                "price": 180.0,
+                "info": "Datos, análisis y noticias sobre Litecoin.",
+                "acerca": "Litecoin es una criptomoneda que usa un programa de confirmación de pagos más rápido y un algoritmo criptográfico diferente a bitcoin."
+            },
+            {
+                "name": "Tether", 
+                "price": 1.0,
+                "info": "Información y análisis de Tether, la stablecoin más popular.",
+                "acerca": "Tether (USDT) es un token de Ethereum sujeto al valor de un dólar estadounidense (también se denomina stablecoin). El emisor de Tether afirma que cada USDT en circulación está respaldado por reservas bancarias y préstamos por un valor idéntico o superior. Nota importante: Coinbase únicamente es compatible con USDT que se ejecuta en la cadena de bloques de Ethereum (ERC-20). No envíe USDT a Coinbase en ninguna otra cadena de bloques."
+            },
+            {
+                "name": "Xrp", 
+                "price": 0.6,
+                "info": "Análisis y noticias sobre XRP, la criptomoneda de Ripple.",
+                "acerca": "XRP is the native token of the XRP Ledger, and the cryptocurrency used by the Ripple payment network. Built for enterprise use on a global scale, XRP powers cost-efficient cross-border payments."
+            },
+            {
+                "name": "Bnb", 
+                "price": 350.0,
+                "info": "Información y análisis sobre BNB, la criptomoneda de Binance.",
+                "acerca": "Binance Coin is a cryptocurrency used to pay fees on the Binance cryptocurrency exchange. Fees paid in Binance Coin on the exchange receive a discount."
+            }
         ]
         for moneda in criptomonedas:
             porcentaje = round(random.uniform(-10, 10), 2)  # Generate random change percentage
-            db.session.add(Criptomoneda(name=moneda["name"], price=moneda["price"], change_percentage=porcentaje))
+            db.session.add(Criptomoneda(
+                name=moneda["name"], 
+                price=moneda["price"], 
+                change_percentage=porcentaje,
+                info=moneda["info"],       # Aquí se asigna la información adicional de la criptomoneda.
+                acerca=moneda["acerca"]    # Aquí se asigna la sección 'Acerca de' de la criptomoneda.
+            ))
         db.session.commit()
 
 @app.route('/', methods=['GET'])
