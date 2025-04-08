@@ -4,15 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ cripto.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .extra-section {
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            width: 70%;
+            text-align: left;
+        }
+        .extra-section h2 {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
-
 <body>
+    <header class="navbar">
+        <h1>CoinBase</h1>
+        <div class="nav-right">
+            {% if session.username %}
+                <p>Bienvenido, {{ session.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+            {% else %}
+                <p>
+                    <a class="login-button" href="{{ url_for('login') }}">Iniciar Sesión</a>
+                    <a class="register-button" href="{{ url_for('register') }}">Registro</a>
+                </p>
+            {% endif %}
+        </div>
+    </header>
+
     <h1>{{ cripto.name }}</h1>
     <p>Precio: ${{ cripto.price }}</p>
     <p>Cambio: {{ cripto.change_percentage }}%</p>
+    {% if cripto.favorite %}
+        <div class="yellow">★</div>
+    {% else %}
+        <div>☆</div>
+    {% endif %}
+
+    <div class="extra-section">
+        <h2>Información adicional sobre {{ cripto.name }}</h2>
+        <p>
+            Aquí encontrarás datos extra, análisis y noticias relacionadas con {{ cripto.name }}.
+        </p>
+    </div>
+
+    <div class="extra-section">
+        <h2>Acerca de {{ cripto.name }}</h2>
+        <p>
+            Aquí se muestra información relevante y actualizada sobre Bitcoin, la criptomoneda líder.
+        </p>
+    </div>
+
     <a href="{{ url_for('index') }}">Volver</a>
-    {% if cripto.favorite %}<div class="yellow">★</div>{% else %}☆{% endif %}
-    
 </body>
 </html>
