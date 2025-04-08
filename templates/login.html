@@ -9,7 +9,7 @@
 
 
   <header class="navbar">
-    <h1>CoinBase</h1>
+    <h1><a href="{{ url_for('index') }}">CoinBase</a></h1>
     
     <div class="nav-right">
             <p><a class="register-button" href="{{ url_for('register') }}">Registro</a></p>
@@ -30,7 +30,7 @@
         <label>Usuario:</label>
 
         <div class="input-box">
-          <input type="text" name="username" required>
+          <input placeholder="Nombre de usuario" type="text" name="username" required>
 
         </div>
         
@@ -38,7 +38,7 @@
         <label>Contraseña:</label>
 
         <div class="input-box">
-          <input type="password" name="password" required>
+          <input placeholder="Contraseña" type="password" name="password" required>
 
         </div>
         
