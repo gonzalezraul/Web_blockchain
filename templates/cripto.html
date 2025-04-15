@@ -23,7 +23,7 @@
             {% endif %}
         </div>
     </header>
-
+    <img src="{{ url_for('imagen', id=cripto.id) }}" class="img-crypto-info">
     <h1>{{ cripto.name }}</h1>
     <p>Precio: ${{ cripto.price }}</p>
     <p>Cambio: {{ cripto.change_percentage }}%</p>

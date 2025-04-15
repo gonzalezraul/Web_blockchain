@@ -172,6 +172,16 @@ a.favorite:hover{
 
 }
 
+.img-crypto-info{
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+
+}
+
 .info{
     color: rgb(80, 80, 80);
     font-weight: 600;
