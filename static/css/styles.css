@@ -268,3 +268,8 @@ input#search:focus{
     font-weight: 600;
     font-size: 1.35rem;
 }
+
+.grafico-grande{
+    width: 50vw;
+    margin: auto;
+}

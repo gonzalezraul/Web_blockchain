@@ -33,6 +33,8 @@
         <div>☆</div>
     {% endif %}
 
+    <img class="grafico-grande" src="{{ url_for('static', filename='img/' + 'grafico_' + cripto.name.lower() + '.png') }}" alt="Gráfico">
+
     <div class="extra-section">
         <h2>Información adicional sobre {{ cripto.name }}</h2>
         <p>

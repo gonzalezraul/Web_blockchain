@@ -34,25 +34,25 @@ with app.app_context():
         criptomonedas = [
             {
                 "name": "Bitcoin", 
-                "price": 78057.97,
+                "price": 83324.72,
                 "info": "Información y análisis de Bitcoin.",
                 "acerca": "Bitcoin, la primera criptomoneda del mundo, se almacena e intercambia de forma segura en internet a través de un libro de contabilidad distribuido conocido como una cadena de bloques. Los bitcoins se pueden dividir en unidades más pequeñas llamadas satoshis, cada satoshi tiene el valor de 0,00000001 bitcoins."
             },
             {
                 "name": "Ethereum", 
-                "price": 3000.0,
+                "price": 1597.38,
                 "info": "Información, análisis y tendencias de Ethereum.",
                 "acerca": "Ethereum es una plataforma informática descentralizada que utiliza ETH (también denominado Ether) para pagar las comisiones de las transacciones (o «gas»). Los desarrolladores pueden usar Ethereum para ejecutar aplicaciones descentralizadas (dapps) y emitir nuevos criptoactivos, conocidos como tokens de Ethereum."
             },
             {
                 "name": "Cardano", 
-                "price": 1.2,
+                "price": 0.62,
                 "info": "Análisis y datos sobre Cardano.",
                 "acerca": "Cardano (ADA) is a blockchain platform built on a proof-of-stake consensus protocol (called Ouroboros) that validates transactions without high energy costs. Development on Cardano uses the Haskell programming language, which is described as enabling Cardano “to pursue evidence-based development for unparalleled security and stability.” The blockchain’s native token, ADA, is named after the 19th century mathematician, Ada Lovelace."
             },
             {
                 "name": "Solana", 
-                "price": 150.0,
+                "price": 130.46,
                 "info": "Información y análisis de Solana, la red de alto rendimiento.",
                 "acerca": "Solana is a decentralized computing platform that uses SOL to pay for transactions. Solana aims to improve blockchain scalability by using a combination of proof of stake consensus and so-called proof of history. As a result, Solana claims to be able to support 50,000 transactions per second without sacrificing decentralization."
             },
@@ -64,31 +64,31 @@ with app.app_context():
             },
             {
                 "name": "Polkadot", 
-                "price": 25.0,
+                "price": 3.73,
                 "info": "Análisis y tendencias de Polkadot en el mercado cripto.",
                 "acerca": "Polkadot es un protocolo que permite las transferencias de cualquier tipo de datos o activos entre cadenas de bloques. Al unir varias cadenas de bloques, Polkadot trata de ofrecer un mayor grado de seguridad y escalabilidad. DOT es el token de gobernanza del protocolo y se puede usar en procesos de staking para mejorar la seguridad de la red o para conectar o vincular nuevas cadenas."
             },
             {
                 "name": "Litecoin", 
-                "price": 180.0,
+                "price": 75.62,
                 "info": "Datos, análisis y noticias sobre Litecoin.",
                 "acerca": "Litecoin es una criptomoneda que usa un programa de confirmación de pagos más rápido y un algoritmo criptográfico diferente a bitcoin."
             },
             {
                 "name": "Tether", 
-                "price": 1.0,
+                "price": 0.88,
                 "info": "Información y análisis de Tether, la stablecoin más popular.",
                 "acerca": "Tether (USDT) es un token de Ethereum sujeto al valor de un dólar estadounidense (también se denomina stablecoin). El emisor de Tether afirma que cada USDT en circulación está respaldado por reservas bancarias y préstamos por un valor idéntico o superior. Nota importante: Coinbase únicamente es compatible con USDT que se ejecuta en la cadena de bloques de Ethereum (ERC-20). No envíe USDT a Coinbase en ninguna otra cadena de bloques."
             },
             {
                 "name": "Xrp", 
-                "price": 0.6,
+                "price": 2.01,
                 "info": "Análisis y noticias sobre XRP, la criptomoneda de Ripple.",
                 "acerca": "XRP is the native token of the XRP Ledger, and the cryptocurrency used by the Ripple payment network. Built for enterprise use on a global scale, XRP powers cost-efficient cross-border payments."
             },
             {
                 "name": "Bnb", 
-                "price": 350.0,
+                "price": 527.49,
                 "info": "Información y análisis sobre BNB, la criptomoneda de Binance.",
                 "acerca": "Binance Coin is a cryptocurrency used to pay fees on the Binance cryptocurrency exchange. Fees paid in Binance Coin on the exchange receive a discount."
             }
