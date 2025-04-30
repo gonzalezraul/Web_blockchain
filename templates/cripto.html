@@ -1,54 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('imagen', id=cripto.id) }}" type="image/x-icon">
-    <title>{{ cripto.name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('imagen', id=cripto.id) }}" type="image/x-icon">
+  <title>{{ cripto.name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-
 <body>
-    <header class="navbar">
-        <h1><a href="{{ url_for('index') }}">CoinBase</a></h1>
-        <div class="nav-right">
-            {% if session.username %}
-                <p>Bienvenido, {{ session.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
-            {% else %}
-                <p>
-                    <a class="login-button" href="{{ url_for('login') }}">Iniciar Sesión</a>
-                    <a class="register-button" href="{{ url_for('register') }}">Registro</a>
-                </p>
-            {% endif %}
-        </div>
-    </header>
-    <img src="{{ url_for('imagen', id=cripto.id) }}" class="img-crypto-info">
-    <h1>{{ cripto.name }}</h1>
-    <p>Precio: ${{ cripto.price }}</p>
-    <p>Cambio: {{ cripto.change_percentage }}%</p>
-    {% if cripto.favorite %}
-        <div class="yellow">★</div>
-    {% else %}
-        <div>☆</div>
-    {% endif %}
-
-    <img class="grafico-grande" src="{{ url_for('static', filename='img/' + 'grafico_' + cripto.name.lower() + '.png') }}" alt="Gráfico">
-
-    <div class="extra-section">
-        <h2>Información adicional sobre {{ cripto.name }}</h2>
+  <header class="navbar">
+    <h1><a href="{{ url_for('index') }}">CoinBase</a></h1>
+    <div class="nav-right">
+      {% if session.username %}
+        <p>Bienvenido, {{ session.username }}! <a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+      {% else %}
         <p>
-            {{ cripto.info }}
+          <a class="login-button" href="{{ url_for('login') }}">Iniciar Sesión</a>
+          <a class="register-button" href="{{ url_for('register') }}">Registro</a>
         </p>
+      {% endif %}
     </div>
+  </header>
 
-    <div class="extra-section">
-        <h2>Acerca de {{ cripto.name }}</h2>
-        <p>
-            {{ cripto.acerca }}
-        </p>
-    </div>
+  <img src="{{ url_for('imagen', id=cripto.id) }}" class="img-crypto-info">
 
-    <a href="{{ url_for('index') }}">Volver</a>
+  <!-- Título principal -->
+  <h1 class="crypto-title">{{ cripto.name }}</h1>
+
+  <!-- Precio -->
+  <p class="crypto-price">Precio: ${{ cripto.price }}</p>
+
+  <!-- Cambio porcentual -->
+  <p class="crypto-change">Cambio: {{ cripto.change_percentage }}%</p>
+
+  {% if cripto.favorite %}
+    <div class="yellow">★</div>
+  {% else %}
+    <div>☆</div>
+  {% endif %}
+
+  <img class="grafico-grande" src="{{ url_for('static', filename='img/' + 'grafico_' + cripto.name.lower() + '.png') }}" alt="Gráfico">
+
+  <div class="extra-section">
+    <h2>Información adicional sobre {{ cripto.name }}</h2>
+    <p>{{ cripto.info }}</p>
+  </div>
+
+  <div class="extra-section">
+    <h2>Acerca de {{ cripto.name }}</h2>
+    <p>{{ cripto.acerca }}</p>
+  </div>
+
+  <a href="{{ url_for('index') }}">Volver</a>
 </body>
 </html>

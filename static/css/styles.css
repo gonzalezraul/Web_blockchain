@@ -92,7 +92,7 @@ li.crypto:hover{
 .grafico {
     width: 65px;
     height: 50px;
-    object-fit: cover;
+    object-fit: cover; 
     margin: 0 10px;
 }
 
@@ -273,3 +273,42 @@ input#search:focus{
     width: 50vw;
     margin: auto;
 }
+
+/* Clases para jerarquía de textos en cripto.html */
+
+/* Título principal de la criptomoneda */
+.crypto-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;      /* Tamaño grande para destacar */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Precio de la criptomoneda */
+.crypto-price {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #555;
+  text-align: center;
+}
+
+/* Cambio porcentual */
+.crypto-change {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #888;
+  text-align: center;
+}
+
+/* Opcional: Espaciado general para la información principal */
+.crypto-info {
+  margin: 1.5rem 0;
+}
+
+/* Otros estilos existentes... */
+/* Asegúrate de que el resto de tu CSS mantenga la coherencia del diseño */
