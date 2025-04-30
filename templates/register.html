@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registro</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
-
+  <title>Registro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
 </head>
 <body>
-    <h1>Registro</h1>
-    <form method="post">
-         <label>Usuario:</label>
-         <input type="text" name="username" required>
-         <br>
-         <label>Contraseña:</label>
-         <input type="password" name="password" required>
-         <br>
-         <input type="submit" value="Registrarse">
-    </form>
-    <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión aquí</a></p>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+  <div class="container">
+    <header class="logo">
+      <h1>CoinBase</h1>
+    </header>
+    <div class="form-box">
+      <h2>Crear Cuenta</h2>
+      <form method="post">
+        <input type="text" name="username" placeholder="Nombre de usuario" required>
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <div class="btn-container">
+          <button type="submit" class="btn">Registrarse
+            <div class="blocks">
+              <div class="block"></div>
+              <div class="block"></div>
+              <div class="block"></div>
+              <div class="block"></div>
+            </div>
+          </button>
+        </div>
+      </form>
+      <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión aquí</a></p>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
 </body>
 </html>

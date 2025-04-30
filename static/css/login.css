@@ -1,128 +1,134 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body {
-    font-family: Poppins;
-	
-}
-
-div.login-box{
-	padding: 20px;
-	text-align: left;
+/* Estilos actualizados para Login: fondo blanco y diseño minimalista */
+* { 
+	box-sizing: border-box; 
+	margin: 0; 
+	padding: 0; 
+  }
+  
+  body {
+	background: #ffffff;
+	color: #333;
+	font-family: 'Poppins', sans-serif;
+	display: flex;
 	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+  }
+  
+  .container {
+	width: 100%;
+	max-width: 400px;
 	margin: auto;
-	background-color: rgb(20, 20, 20);
-	display: flex;
-	width: 20%;
-	height: 45vh;
-	flex-direction: column;
-	color: white;
-	border-radius: 35px;
-	border: 1.5px solid rgb(92, 92, 92);
-}
-
-
-
-h2{
+	padding: 20px;
+  }
+  
+  .logo h1 {
 	font-size: 2rem;
-
-}
-
-div.input-box{
-	width: 100%;
-	display: flex;
-
-	
-}
-
-input{
-	margin: auto;
+	margin-bottom: 20px;
+	color: #333;
 	text-align: center;
-	width: 100%;
-	margin-bottom: 25px;
-	transition: 0.2s;
-
-}
-
-label{
-	width: 100%;
-
-}
-
-div.submit{
-
-	display: flex;
-	width: 100%;
-	margin: auto;
-	margin-top: 10px;
-
-}
-
-input[type="submit"]{
-	font-family: Poppins;
-	border: none;
-	margin: auto;
-	background-color: rgb(21, 107, 255);
+  }
+  
+  .form-box {
+	background: #fff;
+	padding: 2rem;
 	border-radius: 10px;
-	color: white;
-	padding: 5px;
-
-	
-
-}
-
-input[type="text"]{
-	font-family: Poppins;
-	color: white;
-	padding: 8px;
-	background-color: black;
-	outline: none;
-	border: 2px solid rgb(109, 109, 109);
-	border-radius: 6px;
-
-}
-
-
-input[type="text"]:focus{
-	border: rgb(21, 107, 255) 2px solid;
-
-
-}
-
-input[type="password"]{
-	font-family: Poppins;
-	color: white;
-	padding: 8px;
-	background-color: black;
-	outline: none;
-	border: 2px solid rgb(109, 109, 109);
-	border-radius: 6px;
-
-}
-
-input[type="password"]:focus{
-	border: rgb(21, 107, 255) 2px solid;
-
-
-}
-
-input[type="text"]:hover{
-	background-color: rgb(39, 39, 39);
-}
-
-
-input[type="password"]:hover{
-	background-color: rgb(39, 39, 39);
-}
-
-input[type="submit"]:hover{
-	background-color: rgb(0, 78, 213);
-}
-
-
-input:hover{
-	background-color: rgb(39, 39, 39);
-}
-
-input::placeholder{
-	float: left;
-}
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	text-align: center;
+  }
+  
+  .form-box h2 {
+	margin-bottom: 20px;
+	color: #333;
+  }
+  
+  .form-box form input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background: #fafafa;
+	color: #333;
+  }
+  
+  .btn-container {
+	position: relative;
+	overflow: hidden;
+	margin-top: 20px;
+  }
+  
+  .btn {
+	position: relative;
+	background: #2196f3;
+	border: none;
+	color: #fff;
+	padding: 12px 25px;
+	font-size: 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 1;
+	transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+	background: #1976d2;
+  }
+  
+  .btn .blocks {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+  }
+  
+  .btn:hover .blocks,
+  .btn:active .blocks {
+	opacity: 1;
+  }
+  
+  .btn .block {
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	border-radius: 2px;
+	opacity: 0;
+	animation: blockIn 0.5s forwards;
+  }
+  
+  .btn .block:nth-child(1) { animation-delay: 0.1s; }
+  .btn .block:nth-child(2) { animation-delay: 0.2s; }
+  .btn .block:nth-child(3) { animation-delay: 0.3s; }
+  .btn .block:nth-child(4) { animation-delay: 0.4s; }
+  
+  @keyframes blockIn {
+	from { transform: translateY(20px); opacity: 0; }
+	to   { transform: translateY(0); opacity: 1; }
+  }
+  
+  .form-box p {
+	margin-top: 15px;
+	font-size: 0.9rem;
+	color: #333;
+  }
+  
+  .form-box a {
+	color: #2196f3;
+	text-decoration: none;
+  }
+  
+  .form-box a:hover {
+	text-decoration: underline;
+  }
+  
+  @media(max-width:480px){
+	.form-box { padding: 1rem; }
+  }

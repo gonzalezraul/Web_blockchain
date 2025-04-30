@@ -1,65 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 <body>
-
-
-  <header class="navbar">
-    <h1><a href="{{ url_for('index') }}">CoinBase</a></h1>
-    
-    <div class="nav-right">
-            <p><a class="register-button" href="{{ url_for('register') }}">Registro</a></p>
-
-
-    </div>
-    
-
-</header>
-
-  <div class="login-box">
-    <div class="login-title">
+  <div class="container">
+    <header class="logo">
+      <h1>CoinBase</h1>
+    </header>
+    <div class="form-box">
       <h2>Iniciar Sesión</h2>
-
+      <form method="post">
+        <input type="text" name="username" placeholder="Correo o usuario" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <div class="btn-container">
+          <button type="submit" class="btn">Login
+            <div class="blocks">
+              <div class="block"></div>
+              <div class="block"></div>
+              <div class="block"></div>
+              <div class="block"></div>
+            </div>
+          </button>
+        </div>
+      </form>
+      <p>¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
     </div>
-    
-    <form method="post">
-        <label>Usuario:</label>
-
-        <div class="input-box">
-          <input placeholder="Nombre de usuario" type="text" name="username" required>
-
-        </div>
-        
-
-        <label>Contraseña:</label>
-
-        <div class="input-box">
-          <input placeholder="Contraseña" type="password" name="password" required>
-
-        </div>
-        
-        
-
-        <div class="submit">
-          <input type="submit" value="Iniciar sesión">
-        </div>
-        
-    </form>
-    <p>¿No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
   </div>
-    
 </body>
 </html>

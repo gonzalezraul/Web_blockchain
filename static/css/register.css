@@ -1,78 +1,132 @@
-/* register.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
+/* Estilos actualizados para Register: se usa el mismo diseño que en login.css */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  body {
+    background: #ffffff;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-form {
-    background-color: #fff;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .logo h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .form-box {
+    background: #fff;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-h1 {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     text-align: center;
+  }
+  
+  .form-box h2 {
+    margin-bottom: 20px;
     color: #333;
-    margin-bottom: 1rem;
-}
-
-label {
-    display: block;
-    margin-top: 1rem;
-    color: #555;
-}
-
-input[type="text"],
-input[type="password"] {
+  }
+  
+  .form-box form input {
     width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
     border-radius: 5px;
-    box-sizing: border-box;
-}
-
-input[type="submit"] {
-    width: 100%;
-    padding: 0.6rem;
-    margin-top: 1.2rem;
-    background-color: #007bff;
-    color: white;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    color: #333;
+  }
+  
+  .btn-container {
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    position: relative;
+    background: #2196f3;
     border: none;
+    color: #fff;
+    padding: 12px 25px;
+    font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-p {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-a {
-    color: #007bff;
+    overflow: hidden;
+    z-index: 1;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #1976d2;
+  }
+  
+  .btn .blocks {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .btn:hover .blocks,
+  .btn:active .blocks {
+    opacity: 1;
+  }
+  
+  .btn .block {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 2px;
+    opacity: 0;
+    animation: blockIn 0.5s forwards;
+  }
+  
+  .btn .block:nth-child(1) { animation-delay: 0.1s; }
+  .btn .block:nth-child(2) { animation-delay: 0.2s; }
+  .btn .block:nth-child(3) { animation-delay: 0.3s; }
+  .btn .block:nth-child(4) { animation-delay: 0.4s; }
+  
+  @keyframes blockIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  
+  .form-box p {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .form-box a {
+    color: #2196f3;
     text-decoration: none;
-}
-
-a:hover {
+  }
+  
+  .form-box a:hover {
     text-decoration: underline;
-}
-
-ul {
-    margin-top: 1rem;
-    padding-left: 1.2rem;
-    color: red;
-}
+  }
+  
+  @media(max-width:480px){
+    .form-box { padding: 1rem; }
+  }
