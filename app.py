@@ -7,8 +7,8 @@ import random
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'mysecretkey'  # Necesario para manejar sesiones
+
+app.secret_key = 'mysecretkey'  
 
 db = SQLAlchemy(app)
 
@@ -16,10 +16,10 @@ class Criptomoneda(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     favorite = db.Column(db.Boolean, default=False)
-    change_percentage = db.Column(db.Float, default=0.0)  # Nuevo campo para % de cambio
+    change_percentage = db.Column(db.Float, default=0.0)  
     price = db.Column(db.Float, default=0.0)
-    info = db.Column(db.Text, default="")     # Aquí se guarda la información adicional propia de cada criptomoneda.
-    acerca = db.Column(db.Text, default="")   # Aquí se guarda la sección 'Acerca de' propia de cada criptomoneda.
+    info = db.Column(db.Text, default="")     
+    acerca = db.Column(db.Text, default="")   
 
 
 class User(db.Model):
@@ -94,13 +94,13 @@ with app.app_context():
             }
         ]
         for moneda in criptomonedas:
-            porcentaje = round(random.uniform(-10, 10), 2)  # Generate random change percentage
+            porcentaje = round(random.uniform(-10, 10), 2)  
             db.session.add(Criptomoneda(
                 name=moneda["name"], 
                 price=moneda["price"], 
                 change_percentage=porcentaje,
-                info=moneda["info"],       # Aquí se asigna la información adicional de la criptomoneda.
-                acerca=moneda["acerca"]    # Aquí se asigna la sección 'Acerca de' de la criptomoneda.
+                info=moneda["info"],      
+                acerca=moneda["acerca"]  
             ))
         db.session.commit()
 
@@ -140,14 +140,14 @@ def register():
     if request.method == 'POST':
          username = request.form['username']
          password = request.form['password']
-         # Verifica si el usuario ya existe
+         
          if User.query.filter_by(username=username).first():
               flash('El usuario ya existe, elige otro.')
               return redirect(url_for('register'))
          new_user = User(username=username, password=password)
          db.session.add(new_user)
          db.session.commit()
-         session['username'] = username  # Guarda el nombre en la sesión
+         session['username'] = username  
          return redirect(url_for('index'))
     return render_template('register.html')
 
