@@ -310,5 +310,33 @@ input#search:focus{
   margin: 1.5rem 0;
 }
 
+.extra-section{
+    margin: 20px auto;
+    padding: 10px;
+    width: 50%;
+    
+    justify-content: center;
+    align-items: center;
+}
+.extra-section-bottom {
+    display: block;
+    margin: 2rem auto; /* centra horizontalmente y da espacio vertical */
+    background-color: red;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    max-width: 60px;
+  }
+  
+  .extra-section-bottom:hover {
+    background-color: darkred;
+  }
+  
 /* Otros estilos existentes... */
 /* Asegúrate de que el resto de tu CSS mantenga la coherencia del diseño */

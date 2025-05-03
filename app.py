@@ -21,7 +21,7 @@ class Criptomoneda(db.Model):
     info = db.Column(db.Text, default="")     # Aquí se guarda la información adicional propia de cada criptomoneda.
     acerca = db.Column(db.Text, default="")   # Aquí se guarda la sección 'Acerca de' propia de cada criptomoneda.
 
-# Define el modelo de usuario para evitar errores al referenciar a "User"
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
