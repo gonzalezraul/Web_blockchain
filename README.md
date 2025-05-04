@@ -25,8 +25,8 @@ Este proyecto es una aplicación web desarrollada con **Flask** que permite a lo
 - Flask
 - SQLAlchemy
 - Jinja2 (plantillas)
-- HTML, CSS y Bootstrap (si lo integras)
-- SQLite (base de datos embebida)
+- HTML, CSS
+- SQLite
 
 ---
 
